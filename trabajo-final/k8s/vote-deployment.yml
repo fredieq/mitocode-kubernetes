@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vote-deployment
+  namespace: vote
+  labels:
+    app: vote-deployment
+spec:
+  selector:
+    matchLabels:
+      app: vote-deployment
+      #app: metrics
+      #department: engineering
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vote-deployment
+        #app: metrics
+        #department: engineering
+    spec:
+      containers:
+      - name: vote
+        image: "wjma90/examplevotingapp_vote:before"
+        ports:
+        - containerPort: 80
+          #name: http-80
+        #env:
+        #- name: "PORT"
+        #  value: "80"
+ #     - name: hello2
+ #       image: "gcr.io/google-samples/hello-app:1.0"
+ #       ports:
+ #       - containerPort: 8003
+ #         name: http-8003
+ #       env:
+ #       - name: "PORT"
+ #         value: "8003"

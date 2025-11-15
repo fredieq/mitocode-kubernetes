@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vote-service
+  namespace: vote
+spec:
+  type: LoadBalancer
+  selector:
+    app: vote-deployment
+    #app: metrics
+    #department: engineering
+  ports:
+    - port: 80
+      targetPort: 80
+    #nodePort: 31000
+    # name: http-appmetrics# <protocol>[-<suffix>].
+    # appProtocol: http # <protocol>
+    # nodePort: 32225 #<30000 - 32767>
+
+#  - protocol: TCP
+#    name: http-2
+#    port: 8080
+#    targetPort: 8003
+#    nodePort: 31446
+
+# kubectl get nodes --output wide
+# gcloud compute firewall-rules create test-node-port --allow tcp:node-port
+# browser -> node-ip-address:node-port
+# gcloud compute firewall-rules delete test-node-port

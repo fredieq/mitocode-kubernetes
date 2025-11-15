@@ -1,0 +1,20 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: vote
+image: rancher/k3s:v1.31.11-k3s1
+servers: 1
+agents: 2
+ports:
+ - port: 80:80
+   nodeFilters:
+   - loadbalancer
+ - port: 443:443
+   nodeFilters:
+   - loadbalancer
+ - port: 31000:31000
+   nodeFilters:
+   - agent:0
+ - port: 31001:31001
+   nodeFilters:
+   - agent:1   
